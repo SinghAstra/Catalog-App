@@ -1,3 +1,5 @@
+import 'package:catalog_app/pages/HomePage.dart';
+import 'package:catalog_app/pages/SignUpPage.dart';
 import 'package:catalog_app/pages/logInPage.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +15,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Catalog App",
       theme: ThemeData(primarySwatch: Colors.blue),
+      initialRoute: '/signUp',
       routes: {
-        '/': (BuildContext context) => const LogInPage(),
+        '/': (BuildContext context) => const HomePage(),
+        '/signUp': (BuildContext context) => const SignUpPage(),
+        '/login': (BuildContext context) => const LogInPage(),
       },
     );
   }

@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 
-class LogInPage extends StatefulWidget {
-  const LogInPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LogInPage> createState() => _LogInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LogInPageState extends State<LogInPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
+  var password = "";
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Column(children: [
-        const Text(
-          "Welcome",
-          style: TextStyle(fontSize: 24.0),
-        ),
-        const SizedBox(height: 20.0),
-        Form(
+      child: Column(
+        children: [
+          const Text("Sign Up"),
+          Form(
             key: _formKey,
             child: Column(
               children: [
@@ -43,6 +41,27 @@ class _LogInPageState extends State<LogInPage> {
                     }
                     return null;
                   },
+                  onChanged: (value) {
+                    setState(() {
+                      password = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 20.0),
+                TextFormField(
+                  obscureText: true,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  decoration:
+                      const InputDecoration(labelText: "Confirm Password"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Confirm Password Cannot be empty';
+                    }
+                    if (value != password) {
+                      return 'Password do not match.';
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(height: 20.0),
                 ElevatedButton(
@@ -51,10 +70,12 @@ class _LogInPageState extends State<LogInPage> {
                         print("Processing Data....");
                       }
                     },
-                    child: const Text("Log In"))
+                    child: const Text("Sign Up"))
               ],
-            ))
-      ]),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
