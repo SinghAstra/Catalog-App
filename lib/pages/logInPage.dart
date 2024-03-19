@@ -23,7 +23,12 @@ class _LogInPageState extends State<LogInPage> {
             child: Column(
               children: [
                 TextFormField(
-                  decoration: const InputDecoration(labelText: "Username"),
+                  decoration: InputDecoration(
+                    labelText: "Username",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -36,7 +41,12 @@ class _LogInPageState extends State<LogInPage> {
                 TextFormField(
                   obscureText: true,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: const InputDecoration(labelText: "Password"),
+                  decoration: InputDecoration(
+                    labelText: "Password",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Password Cannot be empty';

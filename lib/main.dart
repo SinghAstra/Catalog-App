@@ -14,12 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Catalog App",
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.blue, primaryColor: Colors.amber),
       initialRoute: '/signUp',
       routes: {
         '/': (BuildContext context) => const HomePage(),
         '/signUp': (BuildContext context) => const SignUpPage(),
-        '/login': (BuildContext context) => const LogInPage(),
+        '/logIn': (BuildContext context) => const LogInPage(),
       },
     );
   }

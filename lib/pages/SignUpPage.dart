@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -12,70 +13,55 @@ class _SignUpPageState extends State<SignUpPage> {
   var password = "";
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Column(
-        children: [
-          const Text("Sign Up"),
-          Form(
-            key: _formKey,
+    return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              size: 20,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          backgroundColor: Colors.white,
+          elevation: 0,
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            color: Colors.pink,
+            height: MediaQuery.of(context).size.height - 50,
+            width: double.infinity,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TextFormField(
-                  decoration: const InputDecoration(labelText: "Username"),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Username cannot be empty';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  obscureText: true,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: const InputDecoration(labelText: "Password"),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Password Cannot be empty';
-                    }
-                    return null;
-                  },
-                  onChanged: (value) {
-                    setState(() {
-                      password = value;
-                    });
-                  },
-                ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  obscureText: true,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration:
-                      const InputDecoration(labelText: "Confirm Password"),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Confirm Password Cannot be empty';
-                    }
-                    if (value != password) {
-                      return 'Password do not match.';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20.0),
-                ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        print("Processing Data....");
-                      }
-                    },
-                    child: const Text("Sign Up"))
+                Column(children: [
+                  FadeInUp(
+                    duration: const Duration(seconds: 1),
+                    child: const Text("Sign Up",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold)),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  FadeInUp(
+                    duration: const Duration(milliseconds: 1200),
+                    child: Text("Create an account, It's free",
+                        style:
+                            TextStyle(fontSize: 15, color: Colors.grey[700])),
+                  ),
+                ]),
               ],
             ),
-          )
-        ],
-      ),
-    );
+          ),
+        ));
+  }
+  Widget makeInput({label, obscureText = false}){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+    )
   }
 }
