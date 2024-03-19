@@ -54,14 +54,49 @@ class _SignUpPageState extends State<SignUpPage> {
                             TextStyle(fontSize: 15, color: Colors.grey[700])),
                   ),
                 ]),
+                Column(
+                  children: [
+                    FadeInUp(
+                        duration: Duration(milliseconds: 1200),
+                        child: makeInput(label: "Email")),
+                    FadeInUp(
+                        duration: Duration(milliseconds: 1200),
+                        child: makeInput(label: "Password", obscureText: true)),
+                    FadeInUp(
+                        duration: Duration(milliseconds: 1200),
+                        child: makeInput(
+                            label: "Confirm Password", obscureText: true)),
+                  ],
+                )
               ],
             ),
           ),
         ));
   }
-  Widget makeInput({label, obscureText = false}){
+
+  Widget makeInput({label, obscureText = false}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-    )
+      children: [
+        Text(label,
+            style: const TextStyle(
+                fontWeight: FontWeight.w400,
+                color: Colors.black87,
+                fontSize: 15)),
+        const SizedBox(height: 5),
+        TextField(
+          obscureText: obscureText,
+          decoration: InputDecoration(
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey.shade400)),
+            border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey.shade400)),
+          ),
+        ),
+        const SizedBox(height: 30),
+      ],
+    );
   }
 }
